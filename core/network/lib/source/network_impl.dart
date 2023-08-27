@@ -6,7 +6,7 @@ class NetWorkImpl implements Network {
   Dio dio = Dio(BaseOptions(baseUrl: "http://asdfasdf.com"));
 
   @override
-  Future<dynamic> sendRequest(
+  Future<Response<dynamic>> sendRequest(
       {required HTTPMethod method,
       required String path,
       Map<String, dynamic>? headers,
@@ -18,9 +18,6 @@ class NetWorkImpl implements Network {
       queryParameters: queryParams,
       data: body,
     );
-    if (response.statusCode! > 300) {
-      throw Exception(response.data.toString());
-    }
-    return response.data;
+    return response;
   }
 }
